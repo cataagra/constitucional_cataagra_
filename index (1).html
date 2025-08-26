@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Catarina Agra — Teoria do Direito Constitucional (50 questões básicas) </title>
+  <meta name="description" content="Supremacia da Constituição; Constitucionalismo/Neoconstitucionalismo; Poder Constituinte (originário e difuso); Dimensões dos Direitos; Classificação e Estrutura da Constituição; Conceitos e Elementos.">
+  <style>
+    :root {
+      --bg: #0f0a1f;
+      --panel: #17122c;
+      --card: #1d153c;
+      --accent: #7c3aed;
+      --accent-2: #a78bfa;
+      --ink: #f8f7ff;
+      --muted: #c7bdfc;
+      --right: #16a34a;
+      --wrong: #ef4444;
+      --shadow: 0 12px 30px rgba(124,58,237,.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+      background:
+        radial-gradient(1400px 900px at 70% -10%, rgba(124,58,237,.25), transparent 55%),
+        radial-gradient(900px 700px at -10% 110%, rgba(167,139,250,.18), transparent 60%),
+        var(--bg);
+      color: var(--ink);
+    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 20px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .brand { display:flex; gap:14px; align-items:center; }
+    .logo { width:48px; height:48px; border-radius:16px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display:flex; align-items:center; justify-content:center; font-weight:900; color:#fff; box-shadow: var(--shadow);}
+    .title { font-size: clamp(18px,3vw,28px); }
+    .muted { color: var(--muted); font-size: 12px; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border: 1px solid rgba(167,139,250,.25); border-radius: 18px; padding: 18px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: var(--shadow);}
+    .controls { display:flex; gap:8px; flex-wrap:wrap; }
+    button { border:0; border-radius:12px; padding:12px 16px; background: var(--accent); color:#fff; font-weight:700; cursor:pointer; box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; }
+    button.ghost { background: rgba(167,139,250,.15); color: var(--ink); }
+    button.outline { background: transparent; border:1px solid var(--accent-2); color: var(--accent-2); }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 980px) { .grid { grid-template-columns: 1fr 360px; } }
+    .question-text { font-size: clamp(16px, 2.4vw, 20px); margin:8px 0; line-height:1.45; }
+    .meta { font-size: 12px; color: var(--muted); }
+    .options { display:grid; gap:8px; margin-top:6px; }
+    .option { padding: 12px; border-radius: 12px; border:1px solid rgba(167,139,250,.25); background: rgba(255,255,255,.02); text-align:left; cursor:pointer; }
+    .option:hover { background: rgba(167,139,250,.10); }
+    .option.correct { border-color: var(--right); background: rgba(22,163,74,.16); }
+    .option.wrong { border-color: var(--wrong); background: rgba(239,68,68,.16); }
+    .gabarito { margin-top: 10px; font-size: 14px; }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+    .chip { background: rgba(167,139,250,.15); color: var(--muted); border-radius:999px; padding:6px 10px; font-weight:600; font-size:12px; }
+    .timer { font-variant-numeric: tabular-nums; font-weight: 800; }
+    .progress { height: 10px; width: 100%; background: rgba(167,139,250,.18); border-radius:999px; overflow:hidden; }
+    .progress > div { height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .aside-list { max-height: 70vh; overflow:auto; display:grid; gap:8px; }
+    .item { padding:10px 12px; border-radius:12px; border:1px solid rgba(167,139,250,.25); cursor:pointer; }
+    .item.active { border-color: var(--accent-2); background: rgba(167,139,250,.12); }
+    .small { font-size:12px; color: var(--muted); }
+    footer { text-align:center; padding:22px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">CA</div>
+        <div>
+          <div class="title">Catarina Agra — Teoria do Direito Constitucional</div>
+          <div class="muted">50 questões básicas • embaralhamento • timer • revisão espaçada • atualizado em 25/08/2025 23:32</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="btnPrev" class="outline" title="Anterior">← Anterior</button>
+        <button id="btnNext" class="outline" title="Próxima">Próxima →</button>
+        <button id="btnRevealAll" class="ghost" title="Mostrar gabarito de todas">Mostrar gabarito</button>
+        <button id="btnReset" class="ghost" title="Reiniciar sessão">Reiniciar</button>
+      </div>
+    </header>
+
+    <div class="card" style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+      <span class="chip">Timer: <span id="timer" class="timer">00:00</span></span>
+      <span class="chip">Revisão espaçada: 2 min</span>
+      <div style="margin-left:auto; display:flex; gap:8px;">
+        <button id="btnTimerToggle" class="outline">⏸️ Pausar</button>
+        <button id="btnTimerReset" class="outline">⟲ Zerar</button>
+        <button id="btnExport" class="outline">⬇️ Exportar gabarito (CSV)</button>
+      </div>
+    </div>
+
+    <div class="progress card" aria-label="Progresso" style="margin-top:12px;">
+      <div id="bar"></div>
+    </div>
+
+    <div class="grid">
+      <main class="card" id="main">
+        <div class="meta" id="meta"></div>
+        <div class="question-text" id="question"></div>
+        <div class="options" id="options"></div>
+        <div class="gabarito" id="gabarito"></div>
+        <div class="chips" id="chips"></div>
+      </main>
+      <aside class="card">
+        <div class="small">Questões</div>
+        <div id="list" class="aside-list"></div>
+        <div class="small" style="margin-top:8px;">Dica: use ← → para navegar.</div>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="title" style="font-size:18px;">Temas incluídos</div>
+      <p class="small">
+        Supremacia da Constituição • Constitucionalismo e Neoconstitucionalismo • Poder Constituinte (Originário e Difuso) •
+        Dimensões dos Direitos Fundamentais • Classificação da Constituição • Estrutura da Constituição •
+        Constituição (conceito, sentidos, objeto, conteúdo e elementos).
+      </p>
+    </section>
+
+    <footer>© Catarina Agra — Simulado básico de Teoria do Direito Constitucional</footer>
+  </div>
+
+  <script>
+    const QUESTIONS = [{"id": "Q001", "banca": "CESPE/CEBRASPE", "tema": "Supremacia da Constituição", "enun": "A Constituição ocupa o topo do ordenamento jurídico.", "pergunta": "O que decorre desse princípio?", "opts": ["Normas inferiores devem ser compatíveis com a Constituição", "Leis complementares podem afastar a Constituição", "A Constituição depende de lei para produzir efeitos", "Órgãos administrativos podem descumpri-la por conveniência"], "ans": 0, "exp": "A supremacia constitucional impõe conformidade de todas as normas à Constituição."}, {"id": "Q002", "banca": "FGV", "tema": "Supremacia da Constituição", "enun": "Quando uma lei contraria a Constituição, no Brasil,", "pergunta": "qual mecanismo garante a prevalência do texto constitucional?", "opts": ["Controle de constitucionalidade", "Veto presidencial", "Referendo popular obrigatório", "Revogação automática pelo Executivo"], "ans": 0, "exp": "O controle, difuso ou concentrado, assegura a supremacia da Constituição."}, {"id": "Q003", "banca": "FCC", "tema": "Supremacia da Constituição", "enun": "A ideia de hierarquia normativa", "pergunta": "implica que a Constituição é:", "opts": ["Norma suprema e parâmetro de validade", "Apenas uma lei entre outras", "Ato administrativo superior", "Ato político sem efeitos jurídicos"], "ans": 0, "exp": "A Constituição é parâmetro de validade para todo o ordenamento."}, {"id": "Q004", "banca": "VUNESP", "tema": "Supremacia da Constituição", "enun": "O princípio da força normativa da Constituição", "pergunta": "orienta a interpretação no sentido de:", "opts": ["Maximizar a eficácia do texto constitucional", "Restringir ao máximo direitos fundamentais", "Substituir a Constituição por lei", "Priorizar sempre o costume"], "ans": 0, "exp": "Busca-se interpretação que preserve e amplie a eficácia constitucional."}, {"id": "Q005", "banca": "IBFC", "tema": "Supremacia da Constituição", "enun": "Se houver conflito entre Constituição e lei ordinária,", "pergunta": "qual deve prevalecer?", "opts": ["A Constituição, por ser superior hierarquicamente", "A lei ordinária mais recente", "O ato administrativo", "A norma de menor hierarquia"], "ans": 0, "exp": "A Constituição prevalece por sua posição hierárquica."}, {"id": "Q006", "banca": "IADES", "tema": "Supremacia da Constituição", "enun": "O princípio da conformidade funcional", "pergunta": "significa que os intérpretes devem:", "opts": ["Preservar o esquema de competências definido na Constituição", "Redistribuir competências por equidade", "Transferir poderes ao Executivo por decreto", "Priorizar costumes sobre o texto"], "ans": 0, "exp": "Impõe respeito às funções e competências constitucionais."}, {"id": "Q007", "banca": "IDECAN", "tema": "Supremacia da Constituição", "enun": "A rigidez constitucional contribui para a supremacia porque:", "pergunta": "Como?", "opts": ["Exige procedimento mais difícil para emendar que para legislar", "Elimina o controle de constitucionalidade", "Submete a Constituição ao plebiscito anual", "Permite alteração por decreto simples"], "ans": 0, "exp": "A rigidez confere estabilidade e reforça a supremacia do texto."}, {"id": "Q008", "banca": "AOCP", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "O constitucionalismo clássico surgiu para:", "pergunta": "Qual finalidade central?", "opts": ["Limitar o poder e proteger liberdades", "Concentrar poder no soberano", "Aumentar tributos sem controle", "Afastar direitos individuais"], "ans": 0, "exp": "O movimento visa conter o poder e garantir direitos."}, {"id": "Q009", "banca": "CESPE/CEBRASPE", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "O neoconstitucionalismo enfatiza:", "pergunta": "Qual traço marcante?", "opts": ["Centralidade dos princípios e força normativa", "Supremacia absoluta da lei", "Negação do controle de constitucionalidade", "Substituição do Judiciário pelo Executivo"], "ans": 0, "exp": "Valoriza princípios, direitos fundamentais e aplicabilidade imediata."}, {"id": "Q010", "banca": "FGV", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "A expansão do controle judicial de políticas públicas", "pergunta": "é frequentemente associada ao:", "opts": ["Neoconstitucionalismo", "Estado de polícia", "Legalismo estrito oitocentista", "Absolutismo monárquico"], "ans": 0, "exp": "O neoconstitucionalismo amplia o papel da Constituição e do Judiciário."}, {"id": "Q011", "banca": "FCC", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "No neoconstitucionalismo, a interpretação constitucional", "pergunta": "costuma empregar:", "opts": ["Proporcionalidade e ponderação", "Interpretação exclusivamente gramatical", "Vedação de princípios", "Adoção de silogismo rígido apenas"], "ans": 0, "exp": "A técnica da ponderação é típica para resolver colisões de direitos."}, {"id": "Q012", "banca": "VUNESP", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "A aplicabilidade imediata dos direitos fundamentais", "pergunta": "reflete a:", "opts": ["Força normativa da Constituição", "Necessidade permanente de lei integrativa", "Supremacia dos costumes", "Abandono da separação de poderes"], "ans": 0, "exp": "Direitos irradiam efeitos diretos, sem depender sempre de lei."}, {"id": "Q013", "banca": "IBFC", "tema": "Constitucionalismo e Neoconstitucionalismo", "enun": "O constitucionalismo moderno consolida:", "pergunta": "Qual documento jurídico central?", "opts": ["Constituição escrita com direitos e organização do Estado", "Código civil como norma suprema", "Decretos locais como normas máximas", "Costumes isolados como parâmetro único"], "ans": 0, "exp": "Constituições escritas tornaram-se o centro do ordenamento moderno."}, {"id": "Q014", "banca": "IADES", "tema": "Poder Constituinte — Originário", "enun": "Após ruptura da ordem anterior, elabora-se novo texto constitucional.", "pergunta": "Esse poder é:", "opts": ["Inicial, ilimitado e incondicionado", "Derivado e condicionado", "Delegado pelo Judiciário", "Subordinado à Constituição anterior"], "ans": 0, "exp": "Características clássicas do poder constituinte originário."}, {"id": "Q015", "banca": "IDECAN", "tema": "Poder Constituinte — Originário", "enun": "Quanto aos limites jurídicos, o poder constituinte originário é:", "pergunta": "Como costuma ser descrito?", "opts": ["Juridicamente ilimitado", "Subordinado às leis ordinárias", "Limitado por decreto", "Dependente de autorização administrativa"], "ans": 0, "exp": "Não se subordina à ordem anterior."}, {"id": "Q016", "banca": "AOCP", "tema": "Poder Constituinte — Originário", "enun": "A titularidade do poder constituinte originário, em democracias,", "pergunta": "é atribuída ao:", "opts": ["Povo", "Chefe do Executivo", "Poder Judiciário", "Ministério Público"], "ans": 0, "exp": "Em regra, o povo é considerado titular, exercido por representantes."}, {"id": "Q017", "banca": "CESPE/CEBRASPE", "tema": "Poder Constituinte — Originário", "enun": "A manifestação do poder constituinte originário", "pergunta": "ocorre por:", "opts": ["Criação de nova Constituição", "Edição de lei ordinária", "Julgamento de recurso extraordinário", "Decreto regulamentar"], "ans": 0, "exp": "Expressa-se na instituição de uma nova ordem constitucional."}, {"id": "Q018", "banca": "FGV", "tema": "Poder Constituinte — Originário", "enun": "A legitimidade democrática de uma nova Constituição", "pergunta": "costuma ser reforçada quando:", "opts": ["Há participação popular ou representação ampla", "É imposta por ato secreto", "É feita por medida provisória", "É resultado de portaria administrativa"], "ans": 0, "exp": "Participação social/representativa confere legitimidade."}, {"id": "Q019", "banca": "FCC", "tema": "Poder Constituinte — Originário", "enun": "A ruptura da ordem constitucional anterior", "pergunta": "pressupõe:", "opts": ["Descontinuidade normativa", "Simples alteração de uma lei", "Regulamento infralegal novo", "Portaria de órgão público"], "ans": 0, "exp": "A nova ordem rompe com a anterior."}, {"id": "Q020", "banca": "VUNESP", "tema": "Poder Constituinte — Originário", "enun": "A Constituição promulgada por Assembleia Nacional Constituinte", "pergunta": "é exemplo de:", "opts": ["Exercício do poder constituinte originário", "Exercício do poder regulamentar", "Ato do poder de polícia", "Controle de constitucionalidade"], "ans": 0, "exp": "A ANC institucionaliza a nova ordem."}, {"id": "Q021", "banca": "IBFC", "tema": "Poder Constituinte — Difuso", "enun": "A expressão 'poder constituinte difuso' é utilizada por alguns autores para:", "pergunta": "Em noção básica, ela remete a:", "opts": ["Transformações interpretativas e práticas que atualizam o sentido da Constituição", "Criação formal de nova Constituição", "Emenda constitucional por rito solene", "Revogação total do texto pela lei"], "ans": 0, "exp": "Refere-se, em noção didática, às mudanças por interpretação e prática constitucional."}, {"id": "Q022", "banca": "IADES", "tema": "Poder Constituinte — Difuso", "enun": "Mudanças sem alteração textual, decorrentes de interpretação, costume e prática institucional,", "pergunta": "são chamadas de:", "opts": ["Mutação constitucional", "Revogação expressa", "Reformulação por decreto", "Supressão legislativa automática"], "ans": 0, "exp": "Mutação modifica o sentido aplicado sem alterar a letra do texto."}, {"id": "Q023", "banca": "IDECAN", "tema": "Poder Constituinte — Difuso", "enun": "No plano introdutório, a ideia de transformação difusa", "pergunta": "aponta para:", "opts": ["Atuação interpretativa dos órgãos e da sociedade ao longo do tempo", "Substituição total do texto por costume", "Desuso da Constituição como regra", "Apenas atuação do Executivo"], "ans": 0, "exp": "Diversos atores, pela prática, dão novos contornos à aplicação do texto."}, {"id": "Q024", "banca": "AOCP", "tema": "Poder Constituinte — Difuso", "enun": "A mutação constitucional:", "pergunta": "Quanto ao procedimento:", "opts": ["Dispensa rito de emenda, pois é interpretativa", "Exige mesmo quórum da emenda", "Depende de plebiscito", "É ato discricionário de ministro"], "ans": 0, "exp": "É fenômeno hermenêutico, não de alteração formal."}, {"id": "Q025", "banca": "CESPE/CEBRASPE", "tema": "Poder Constituinte — Difuso", "enun": "Um exemplo didático de mutação seria:", "pergunta": "Qual hipótese?", "opts": ["Novo sentido atribuído pelo tribunal a princípio constitucional", "Revogação expressa de artigo por emenda", "Publicação de lei complementar", "Decreto regulamentar sobre tributos"], "ans": 0, "exp": "Atribuir sentido diverso, sem alterar a letra, configura mutação."}, {"id": "Q026", "banca": "FGV", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Direitos de primeira dimensão estão ligados, historicamente, a:", "pergunta": "Quais valores?", "opts": ["Liberdades negativas e limitação do Estado", "Prestação estatal ampla", "Solidariedade entre povos", "Proteção ambiental coletiva"], "ans": 0, "exp": "Direitos civis e políticos, com ênfase na liberdade."}, {"id": "Q027", "banca": "FCC", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Direitos de segunda dimensão referem-se a:", "pergunta": "Quais prestações?", "opts": ["Direitos sociais, econômicos e culturais", "Liberdades clássicas", "Direitos difusos ambientais", "Direitos de nacionalidade"], "ans": 0, "exp": "Demandam ações positivas do Estado."}, {"id": "Q028", "banca": "VUNESP", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Direitos de terceira dimensão evidenciam:", "pergunta": "Qual traço?", "opts": ["Titularidade coletiva/difusa (solidariedade)", "Exclusividade individual", "Meramente patrimoniais", "Apenas políticos"], "ans": 0, "exp": "Envolvem bens coletivos: meio ambiente, paz, desenvolvimento."}, {"id": "Q029", "banca": "IBFC", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Quanto à coexistência das dimensões de direitos:", "pergunta": "Qual afirmação é correta?", "opts": ["As dimensões se somam, não se substituem", "Cada dimensão elimina a anterior", "Só a primeira dimensão é válida", "A terceira revoga as demais"], "ans": 0, "exp": "Fala-se em cumulatividade, não em substituição."}, {"id": "Q030", "banca": "IADES", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Exemplo típico de direito de segunda dimensão é:", "pergunta": "Qual?", "opts": ["Educação", "Liberdade de crença", "Liberdade de expressão", "Propriedade"], "ans": 0, "exp": "Direito social clássico, prestacional."}, {"id": "Q031", "banca": "IDECAN", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "Exemplo recorrente de direito de terceira dimensão é:", "pergunta": "Qual?", "opts": ["Meio ambiente ecologicamente equilibrado", "Direito de propriedade", "Direito ao voto", "Liberdade de locomoção"], "ans": 0, "exp": "Bem de titularidade coletiva e interesse difuso."}, {"id": "Q032", "banca": "AOCP", "tema": "Gerações/Dimensões dos Direitos Fundamentais", "enun": "A expressão 'dimensões dos direitos' é preferida por alguns autores a 'gerações' porque:", "pergunta": "Por quê?", "opts": ["Evita a ideia de substituição histórica e sugere cumulatividade", "Implica hierarquia rígida", "Defende abandono dos direitos clássicos", "Indica que só há uma categoria"], "ans": 0, "exp": "Dimensões comunicam coexistência sem hierarquia necessária."}, {"id": "Q033", "banca": "CESPE/CEBRASPE", "tema": "Classificação da Constituição", "enun": "Uma Constituição elaborada por representantes do povo é:", "pergunta": "Quanto à origem:", "opts": ["Promulgada (democrática)", "Outorgada", "Cesarista", "Pactuada"], "ans": 0, "exp": "Promulgada decorre de processo democrático/representativo."}, {"id": "Q034", "banca": "FGV", "tema": "Classificação da Constituição", "enun": "Constituição que exige procedimento mais dificultoso para ser emendada é:", "pergunta": "Quanto à estabilidade:", "opts": ["Rígida", "Flexível", "Semirrígida", "Imutável por costume"], "ans": 0, "exp": "Rígida: emenda mais difícil do que lei ordinária."}, {"id": "Q035", "banca": "FCC", "tema": "Classificação da Constituição", "enun": "Constituição reduzida, com normas centrais e remissão à legislação infraconstitucional, é dita:", "pergunta": "Quanto à extensão:", "opts": ["Sintética", "Analítica", "Dirigente", "Material"], "ans": 0, "exp": "Sintética (concisa) contrasta com analítica (detalhada)."}, {"id": "Q036", "banca": "VUNESP", "tema": "Classificação da Constituição", "enun": "Constituição que regula minuciosamente políticas públicas e programas é:", "pergunta": "Quanto ao conteúdo/propósito:", "opts": ["Dirigente (analítica)", "Meramente formal", "Flexível", "Pactuada"], "ans": 0, "exp": "Dirigente traz diretrizes programáticas detalhadas."}, {"id": "Q037", "banca": "IBFC", "tema": "Classificação da Constituição", "enun": "Quanto à forma, documento constitucional escrito é:", "pergunta": "Como se classifica?", "opts": ["Escrito", "Costumeiro", "Consuetudinário apenas", "Impolítico"], "ans": 0, "exp": "A maioria das Constituições modernas é escrita."}, {"id": "Q038", "banca": "IADES", "tema": "Classificação da Constituição", "enun": "Quanto ao modo de elaboração, Constituição imposta pelo governante sem participação popular é:", "pergunta": "Qual?", "opts": ["Outorgada", "Promulgada", "Pactuada", "Popular"], "ans": 0, "exp": "Outorgada é imposta e não resulta de deliberação democrática."}, {"id": "Q039", "banca": "IDECAN", "tema": "Estrutura da Constituição", "enun": "A estrutura típica de uma Constituição inclui:", "pergunta": "Quais partes?", "opts": ["Preâmbulo, parte dogmática e disposições transitórias", "Somente artigos penais", "Apenas normas sobre orçamento", "Exclusivamente princípios implícitos"], "ans": 0, "exp": "Estrutura comum em várias Constituições escritas."}, {"id": "Q040", "banca": "AOCP", "tema": "Estrutura da Constituição", "enun": "O preâmbulo tem natureza:", "pergunta": "Qual é a característica geral?", "opts": ["Orientadora/interpretativa, sem força normativa típica de regra", "Regulamentar penal", "Autoexecutória absoluta", "Revogável por decreto"], "ans": 0, "exp": "Em regra, orienta a interpretação; não cria direitos diretamente."}, {"id": "Q041", "banca": "CESPE/CEBRASPE", "tema": "Estrutura da Constituição", "enun": "A parte dogmática de uma Constituição reúne:", "pergunta": "O que contém?", "opts": ["Princípios, direitos e organização do Estado", "Somente disposições finais", "Apenas normas orçamentárias", "Exclusivamente atos transitórios"], "ans": 0, "exp": "É o núcleo normativo estruturante."}, {"id": "Q042", "banca": "FGV", "tema": "Estrutura da Constituição", "enun": "As disposições transitórias servem para:", "pergunta": "Qual finalidade?", "opts": ["Adaptar a passagem da ordem antiga para a nova", "Revogar somente leis penais", "Tratar de casos particulares eternamente", "Conferir poder regulamentar"], "ans": 0, "exp": "Regras de transição entre ordens jurídicas."}, {"id": "Q043", "banca": "FCC", "tema": "Estrutura da Constituição", "enun": "Cláusulas pétreas:", "pergunta": "Quanto ao papel estrutural:", "opts": ["Preservam núcleos intangíveis do texto contra emenda", "Permitem alteração por lei ordinária", "São meras recomendações", "Só valem para orçamento"], "ans": 0, "exp": "Blindam conteúdos essenciais, como direitos e separação de poderes."}, {"id": "Q044", "banca": "VUNESP", "tema": "Estrutura da Constituição", "enun": "O Ato das Disposições Constitucionais Transitórias (ADCT), no Brasil,", "pergunta": "integra:", "opts": ["A própria Constituição na parte transitória", "Um código autônomo", "Lei complementar", "Regulamento administrativo"], "ans": 0, "exp": "O ADCT compõe a Constituição e disciplina a transição."}, {"id": "Q045", "banca": "IBFC", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "No sentido material, Constituição é:", "pergunta": "Como se define?", "opts": ["Conjunto de normas sobre a estrutura fundamental do Estado", "Qualquer lei ordinária", "Somente costumes", "Ato administrativo"], "ans": 0, "exp": "Material: conteúdo referente à organização do poder e direitos."}, {"id": "Q046", "banca": "IADES", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "No sentido formal, Constituição é:", "pergunta": "O que a caracteriza?", "opts": ["Documento solene com status superior", "Conjunto de sentenças judiciais", "Lista de decretos", "Coleção de costumes locais"], "ans": 0, "exp": "Formal: norma situada no ápice, com processo específico de mudança."}, {"id": "Q047", "banca": "IDECAN", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "Os elementos limitativos da Constituição referem-se a:", "pergunta": "O que abrangem?", "opts": ["Direitos e garantias fundamentais", "Organização dos Poderes", "Ordem econômica", "Ordem social"], "ans": 0, "exp": "Limitam o poder, protegendo liberdades."}, {"id": "Q048", "banca": "AOCP", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "Os elementos orgânicos da Constituição tratam de:", "pergunta": "Qual conteúdo?", "opts": ["Estrutura e competências dos órgãos do Estado", "Direitos individuais", "Disposições transitórias", "Preâmbulo"], "ans": 0, "exp": "Organizam os Poderes e repartem competências."}, {"id": "Q049", "banca": "CESPE/CEBRASPE", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "Os elementos socioideológicos na Constituição:", "pergunta": "Que aspecto trazem?", "opts": ["Conciliação entre liberdade e justiça social", "Exclusão de direitos sociais", "Apenas normas penais", "Somente regras eleitorais"], "ans": 0, "exp": "Incorporam valores liberais e sociais."}, {"id": "Q050", "banca": "FGV", "tema": "Constituição — conceito/sentidos/objeto/conteúdo/elementos", "enun": "Objeto da Constituição inclui:", "pergunta": "Qual abrangência?", "opts": ["Organização do Estado e direitos fundamentais", "Somente orçamento público", "Apenas normas fiscais", "Exclusivamente política externa"], "ans": 0, "exp": "Abarca estrutura do Estado e catálogo de direitos."}];
+    const REVIEW_DELAY_MS = 2 * 60 * 1000;
+
+    const el = (id) => document.getElementById(id);
+    const fmt2 = (n) => (n<10 ? '0'+n : ''+n);
+    const timerEl = el('timer');
+    const bar = el('bar');
+    const list = el('list');
+    const qEl = el('question');
+    const optionsEl = el('options');
+    const metaEl = el('meta');
+    const gabEl = el('gabarito');
+    const chipsEl = el('chips');
+
+    let state = {
+      current: 0,
+      order: [...Array(QUESTIONS.length).keys()],
+      answered: Array(QUESTIONS.length).fill(null),
+      revealedAll: false,
+      shuffledOptions: [],
+      reviewQueue: [],
+      startedAt: Date.now(),
+      timerPaused: false,
+      elapsedBase: 0,
+      tickHandle: null,
+    };
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i=a.length-1; i>0; i--) {
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function initShuffles() {
+      state.shuffledOptions = QUESTIONS.map(q => shuffle([0,1,2,3]));
+    }
+
+    function tick() {
+      if (state.timerPaused) return;
+      const elapsed = state.elapsedBase + (Date.now() - state.startedAt);
+      const s = Math.floor(elapsed/1000);
+      timerEl.textContent = fmt2(Math.floor(s/60)) + ':' + fmt2(s%60);
+    }
+    function startTimer() {
+      state.startedAt = Date.now();
+      state.timerPaused = false;
+      if (state.tickHandle) clearInterval(state.tickHandle);
+      state.tickHandle = setInterval(tick, 250);
+    }
+    function pauseTimer() {
+      if (!state.timerPaused) {
+        state.elapsedBase += (Date.now() - state.startedAt);
+        state.timerPaused = true;
+      }
+    }
+    function resetTimer() {
+      state.startedAt = Date.now();
+      state.elapsedBase = 0;
+      state.timerPaused = false;
+      tick();
+    }
+
+    function scheduleReview(idx) {
+      state.reviewQueue.push({ dueAt: Date.now() + REVIEW_DELAY_MS, idx });
+    }
+    function popDueReview() {
+      const now = Date.now();
+      const i = state.reviewQueue.findIndex(it => it.dueAt <= now);
+      if (i >= 0) return state.reviewQueue.splice(i,1)[0];
+      return null;
+    }
+
+    function renderList() {
+      list.innerHTML = '';
+      state.order.forEach((idx, pos) => {
+        const item = document.createElement('div');
+        item.className = 'item' + (pos === state.current ? ' active' : '');
+        const q = QUESTIONS[idx];
+        const answered = state.answered[idx];
+        item.innerHTML = `<div><b>#${fmt2(pos+1)}</b> — ${q.pergunta}</div>
+                          <div class="small">Tema: ${q.tema} • Nível: Básico • Banca: ${q.banca} • ID: ${q.id} ${answered!==null?'• Respondida':''}</div>`;
+        item.onclick = () => { state.current = pos; render(); };
+        list.appendChild(item);
+      });
+    }
+
+    function render() {
+      const total = state.order.length;
+      bar.style.width = ((state.current+1)/Math.max(total,1))*100 + '%';
+
+      const idx = state.order[state.current];
+      const q = QUESTIONS[idx];
+      const perm = state.shuffledOptions[idx];
+
+      metaEl.textContent = `Questão ${state.current+1} de ${total} • Tema: ${q.tema} • Nível: Básico • Banca: ${q.banca} • ID: ${q.id}`;
+      qEl.innerHTML = `<div>${q.enun}</div><div style="margin-top:6px;"><i>${q.pergunta}</i></div>`;
+
+      optionsEl.innerHTML = '';
+      const selected = state.answered[idx];
+      for (let i=0;i<4;i++) {
+        const optIdx = perm[i];
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.textContent = String.fromCharCode(65+i) + ') ' + q.opts[optIdx];
+        btn.onclick = () => select(i);
+        if (selected !== null || state.revealedAll) {
+          btn.disabled = true;
+          const correctLetter = perm.indexOf(q.ans);
+          if (i === correctLetter) btn.classList.add('correct');
+          if (!state.revealedAll && selected !== null && i === selected && i !== correctLetter) btn.classList.add('wrong');
+        }
+        optionsEl.appendChild(btn);
+      }
+
+      gabEl.innerHTML = '';
+      if (selected !== null || state.revealedAll) {
+        const correctLetter = String.fromCharCode(65 + state.shuffledOptions[idx].indexOf(q.ans));
+        gabEl.innerHTML = `<b>Gabarito:</b> alternativa <b>${correctLetter}</b> — ${q.opts[q.ans]}<br/><span class="small">${q.exp}</span>`;
+      }
+
+      chipsEl.innerHTML = `<span class="chip">${q.tema}</span><span class="chip">Básico</span>`;
+
+      renderList();
+    }
+
+    function select(i) {
+      const idx = state.order[state.current];
+      if (state.answered[idx] !== null) return;
+      const perm = state.shuffledOptions[idx];
+      const q = QUESTIONS[idx];
+      const correct = (perm.indexOf(q.ans) === i);
+      state.answered[idx] = i;
+      if (!correct) scheduleReview(idx);
+      render();
+    }
+
+    function next() {
+      const due = popDueReview();
+      if (due) {
+        const pos = state.order.indexOf(due.idx);
+        const after = state.current + 1;
+        if (pos === -1) { state.order.splice(after, 0, due.idx); }
+        else if (pos <= state.current) { state.order.splice(pos,1); state.order.splice(after,0,due.idx); }
+      }
+      if (state.current < state.order.length - 1) state.current += 1;
+      else state.current = 0;
+      render();
+    }
+    function prev() { state.current = (state.current > 0) ? state.current-1 : state.order.length-1; render(); }
+    function revealAll() { state.revealedAll = true; render(); }
+    function resetAll() {
+      state.current = 0;
+      state.answered = Array(QUESTIONS.length).fill(null);
+      state.revealedAll = false;
+      state.order = [...Array(QUESTIONS.length).keys()];
+      state.reviewQueue = [];
+      initShuffles();
+      resetTimer();
+      render();
+    }
+
+    
+    function exportCSV() {
+      const headers = ["ID","Banca","Nível","Tema","Enunciado","Pergunta","A","B","C","D","Gabarito(letra)","Correta","Comentário"];
+      const rows = QUESTIONS.map((q, idx) => {
+        const perm = state.shuffledOptions[idx];
+        const correctLetter = String.fromCharCode(65 + perm.indexOf(q.ans));
+        return [
+          q.id, q.banca, "Básico", q.tema,
+          q.enun, q.pergunta,
+          q.opts[perm[0]], q.opts[perm[1]], q.opts[perm[2]], q.opts[perm[3]],
+          correctLetter, q.opts[q.ans], q.exp
+        ];
+      });
+      const escape = (s) => ('"' + String(s).replace(/"/g, '""') + '"');
+      const csv = [headers.join(';')].concat(rows.map(r => r.map(escape).join(';'))).join('
+');
+
+      const isIOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+      if (isIOS) {
+        // iOS Safari often ignores the download attribute for blobs. Use data URI.
+        const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+        const win = window.open(dataUri, '_blank');
+        if (!win) {
+          alert('No iPhone, permita pop-ups para baixar o CSV.');
+        }
+      } else {
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'gabarito-catarina-agra-50.csv';
+        document.body.appendChild(a); // append for Safari
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    }
+
+    document.getElementById('btnNext').onclick = next;
+    document.getElementById('btnPrev').onclick = prev;
+    document.getElementById('btnRevealAll').onclick = revealAll;
+    document.getElementById('btnReset').onclick = resetAll;
+    document.getElementById('btnTimerToggle').onclick = () => {
+      if (state.timerPaused) { startTimer(); document.getElementById('btnTimerToggle').textContent = '⏸️ Pausar'; }
+      else { pauseTimer(); document.getElementById('btnTimerToggle').textContent = '▶️ Retomar'; }
+    };
+    document.getElementById('btnTimerReset').onclick = resetTimer;
+    document.getElementById('btnExport').onclick = exportCSV;
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    function init() {
+      state.order = [...Array(QUESTIONS.length).keys()];
+      initShuffles();
+      startTimer();
+      render();
+    }
+    init();
+  </script>
+</body>
+</html>
